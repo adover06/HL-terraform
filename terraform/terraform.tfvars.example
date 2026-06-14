@@ -5,6 +5,8 @@ proxmox_endpoint  = "https://192.168.X.X:8006/"
 proxmox_api_token = "root@pam!terraform=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ssh_public_key    = "ssh-ed25519 AAAA...your-key... you@host"
 
+vlan_id = 30   # the VLAN your k3s VMs should live on (must have a DHCP server)
+
 # node_name and template_id default to "pve" / 500 — uncomment to override:
 # node_name   = "pve"
 # template_id = 500

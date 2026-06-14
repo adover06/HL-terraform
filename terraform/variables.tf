@@ -25,3 +25,8 @@ variable "template_id" {
   type        = number
   default     = 500
 }
+
+variable "vlan_id" {
+  description = "VLAN tag for the k3s VMs on the vmbr2 trunk (use a VLAN that has DHCP, e.g. 30 for 10.0.30.x)"
+  type        = number
+}

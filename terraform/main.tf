@@ -20,7 +20,7 @@ resource "proxmox_virtual_environment_vm" "k3s" {
   }
 
   agent {
-    enabled = true # lets Terraform read the VM's IP back via qemu-guest-agent
+    enabled = false # Ubuntu cloud image has no qemu-guest-agent; don't make TF wait on it
   }
 
   cpu {
@@ -39,11 +39,13 @@ resource "proxmox_virtual_environment_vm" "k3s" {
   }
 
   network_device {
-    bridge = "vmbr2"
+    bridge  = "vmbr2"        # the VLAN trunk from pfSense
+    vlan_id = var.vlan_id    # tag onto a specific VLAN so DHCP on that VLAN serves the VM
   }
 
   # Cloud-init: DHCP + your SSH key on the default 'ubuntu' user.
   initialization {
+    datastore_id = "tank" # cloud-init drive on tank; local-lvm may not exist on a ZFS host
     ip_config {
       ipv4 {
         address = "dhcp"
