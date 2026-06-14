@@ -1,0 +1,14 @@
+# ── macOS ──
+.DS_Store
+
+# ── Terraform: secrets + state — NEVER commit ──
+*.tfvars            # real var files hold your API token (*.tfvars.example is safe — different suffix)
+*.tfstate           # state stores secrets/IPs in PLAINTEXT
+*.tfstate.*
+.terraform/         # downloaded provider binaries
+crash.log
+# .terraform.lock.hcl is committed ON PURPOSE (pins provider versions) — do not add it here.
+
+# ── Go (the broker, coming later) ──
+/bin/
+*.test

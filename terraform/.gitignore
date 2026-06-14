@@ -1,0 +1,8 @@
+# Secrets + state — never commit these
+terraform.tfvars
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored — commit it (see below).
